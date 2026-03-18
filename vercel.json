@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "outputDirectory": "public",
+  "functions": {
+    "api/auth.js": { "maxDuration": 15 }
+  }
+}
