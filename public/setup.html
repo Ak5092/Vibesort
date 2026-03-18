@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VibeSort — Setup</title>
+<style>
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;max-width:640px;margin:0 auto;padding:32px 20px 60px;background:#07070f;color:#e0e0f0;line-height:1.6;}
+  h1{font-size:28px;font-weight:800;letter-spacing:-1px;margin-bottom:4px;}
+  .sub{color:rgba(240,240,248,.4);font-size:15px;margin-bottom:40px;}
+  h2{font-size:17px;font-weight:700;margin:32px 0 12px;display:flex;align-items:center;gap:10px;}
+  .num{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#ff3cac,#a78bfa);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;flex-shrink:0;}
+  .card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:16px 18px;margin-bottom:8px;}
+  code{font-family:'SF Mono',Menlo,monospace;font-size:12px;background:rgba(255,255,255,.08);padding:3px 7px;border-radius:6px;color:#a78bfa;word-break:break-all;}
+  .copy-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  a{color:#22d3ee;text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  table{width:100%;border-collapse:collapse;font-size:13px;}
+  th{text-align:left;padding:8px 10px;color:rgba(240,240,248,.4);font-weight:500;border-bottom:1px solid rgba(255,255,255,.07);}
+  td{padding:8px 10px;border-bottom:1px solid rgba(255,255,255,.05);}
+  td:first-child{color:rgba(240,240,248,.5);}
+  td code{word-break:break-all;}
+  .check{color:#1DB954;font-weight:600;}
+  .warn{color:#f59e0b;}
+  .ping-box{background:rgba(29,185,84,.08);border:1px solid rgba(29,185,84,.2);border-radius:12px;padding:14px 16px;font-size:13px;margin-top:24px;}
+  .ping-box a{color:#1DB954;}
+  .note{font-size:12px;color:rgba(240,240,248,.35);margin-top:6px;}
+  hr{border:none;border-top:1px solid rgba(255,255,255,.07);margin:32px 0;}
+</style>
+</head>
+<body>
+
+<h1>VibeSort setup</h1>
+<p class="sub">~10 minutes · free · users just tap Connect after this</p>
+
+<h2><div class="num">1</div> Deploy to Vercel</h2>
+<div class="card">
+  <p style="margin:0 0 10px;font-size:14px;">Go to <a href="https://vercel.com/new" target="_blank">vercel.com/new</a> → sign up free with GitHub</p>
+  <p style="margin:0 0 10px;font-size:14px;">Click <strong>Browse</strong> or drag the <code>vibesort/</code> folder → click <strong>Deploy</strong></p>
+  <p style="margin:0;font-size:14px;">✦ Vercel gives you a URL like <code>https://vibesort-abc123.vercel.app</code> — copy it</p>
+</div>
+
+<h2><div class="num">2</div> Register your Spotify app</h2>
+<div class="card">
+  <p style="margin:0 0 10px;font-size:14px;">Go to <a href="https://developer.spotify.com/dashboard" target="_blank">developer.spotify.com/dashboard</a> → <strong>Create app</strong></p>
+  <table>
+    <tr><th>Field</th><th>Value</th></tr>
+    <tr><td>App name</td><td>VibeSort (anything)</td></tr>
+    <tr><td>Description</td><td>Playlist sorter (anything)</td></tr>
+    <tr><td>Redirect URI</td><td><code>https://YOUR-URL.vercel.app/api/auth?action=callback</code></td></tr>
+    <tr><td>APIs</td><td>✓ Web API</td></tr>
+  </table>
+  <p style="margin:12px 0 0;font-size:13px;color:rgba(240,240,248,.4);">After saving → Settings → copy <strong>Client ID</strong> and <strong>Client Secret</strong></p>
+</div>
+
+<h2><div class="num">3</div> Add environment variables in Vercel</h2>
+<div class="card">
+  <p style="margin:0 0 12px;font-size:14px;">Vercel project → <strong>Settings</strong> → <strong>Environment Variables</strong> → add all three:</p>
+  <table>
+    <tr><th>Variable name</th><th>Value</th></tr>
+    <tr><td><code>SPOTIFY_CLIENT_ID</code></td><td>From Spotify dashboard</td></tr>
+    <tr><td><code>SPOTIFY_CLIENT_SECRET</code></td><td>From Spotify dashboard</td></tr>
+    <tr><td><code>REDIRECT_URI</code></td><td><code>https://YOUR-URL.vercel.app/api/auth?action=callback</code></td></tr>
+  </table>
+  <p style="margin:10px 0 0;font-size:13px;color:rgba(240,240,248,.4);">After adding → <strong>Deployments</strong> → click the three dots → <strong>Redeploy</strong></p>
+</div>
+
+<h2><div class="num">4</div> Verify it works</h2>
+<div class="card">
+  <p style="margin:0 0 10px;font-size:14px;">Open this URL in your browser — it should show all three as <span class="check">true</span>:</p>
+  <code>https://YOUR-URL.vercel.app/api/auth?action=ping</code>
+  <p style="margin:10px 0 0;font-size:13px;color:rgba(240,240,248,.4);">If any show <code>false</code> → check spelling of env var names, then redeploy</p>
+</div>
+
+<h2><div class="num">5</div> Add to iPhone</h2>
+<div class="card">
+  <p style="margin:0 0 6px;font-size:14px;">Open your Vercel URL in <strong>Safari</strong> (not Chrome)</p>
+  <p style="margin:0 0 6px;font-size:14px;">Tap the <strong>Share</strong> button → <strong>"Add to Home Screen"</strong> → <strong>Add</strong></p>
+  <p style="margin:0;font-size:14px;">VibeSort appears as a full-screen app icon 🎉</p>
+</div>
+
+<hr>
+
+<div class="ping-box">
+  <strong>🔧 Debugging tip</strong><br>
+  If Connect Spotify does nothing or errors, visit <code>/api/auth?action=ping</code> on your deployment.<br>
+  All three values must be <code class="check">true</code>. If not, re-check env vars and redeploy.
+</div>
+
+</body>
+</html>
